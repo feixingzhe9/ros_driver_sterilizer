@@ -1,0 +1,5 @@
+<launch>
+    <node name="driver_sterilizer" pkg="driver_sterilizer" type="main.py" respawn="true" />
+    <rosparam file="$(find driver_sterilizer)/config/sterilizer.yaml" command="load"/>
+
+</launch>

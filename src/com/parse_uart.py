@@ -103,5 +103,13 @@ def proc_frame(frame, frame_len):
 
         ack_queue.put(ack_info)
 
+    if cmd == protocol_param.PROTOCOL_CMD_STERILIZE_DONE:
+        ack_info.clear()
+        ack_info.cmd = protocol_param.PROTOCOL_CMD_STERILIZE_DONE
+        ack_info.data[0] = frame[1]
+        ack_info.data[1] = frame[2]
+        ack_info.data[2] = frame[3]
+
+        ack_queue.put(ack_info)
 def __main__():
     pass

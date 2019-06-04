@@ -19,17 +19,12 @@ class SendData(object):
         for i in range(0, protocol_param.FRAME_LEN_MAX):
             self.data[i] = 0
 
-
-#### do we need this thread ? ####
 def send_thread(tmp):
     while not rospy.is_shutdown():
         if not send_queue.empty():
             data = send_queue.get()
             if data is not None:
-                ##uart_driver.com_send(data.data[0:data.len])
                 print 'send_len: ', data.len
                 values = bytearray(data.data[0:data.len])
-                #for i in values:
-                    #print hex(i)
                 uart_driver.com_send(values)
-        time.sleep(0.1)
+        time.sleep(0.05)

@@ -19,21 +19,17 @@ class RcvOpt(object):
         self.rcv_buf = []
         for i in range(0, protocol_param.FRAME_LEN_MAX):
             self.rcv_buf.append(0)
-        #print self.rcv_buf
 
 
 def cal_frame_sum(data, data_len):
     data_sum = 0
     for i in range(0, data_len):
        data_sum = data_sum + data[i]
-       #print 'sum data: ', data[i]
-    #print 'data_sum: ', data_sum
     return data_sum & 0x00ff
 
 def protocol_proc_thread(tmp):
     data_tmp = 0
     rcv_com_opt = RcvOpt()
-    #rcv_com_opt.__init__()
     while not rospy.is_shutdown():
         time.sleep(0.1)
         while not uart_rcv.rcv_queue.empty():

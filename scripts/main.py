@@ -3,11 +3,9 @@
 
 import rospy
 import threading
-#import Queue
+import json
 import sys
-#import numpy as np
 import time
-#import json
 from com import uart_driver
 from com import uart_rcv
 from com import uart_send
@@ -19,6 +17,9 @@ def main():
 
     rospy.init_node("driver_sterilizer", anonymous=True)
 
+    global pub_to_mission
+    global sub_from_mission
+
     uart_driver.open_com()
     thread_send = threading.Thread(target = uart_send.send_thread, args = (0,))
     thread_rcv = threading.Thread(target = uart_rcv.rcv_thread, args = (0,))
@@ -27,10 +28,12 @@ def main():
     thread_send.start()
     thread_rcv.start()
     thread_protocol_proc.start()
-    #time.sleep(1)
+    time.sleep(1)
+    protocol.init()
+    time.sleep(1)
     #protocol.set_sterilizer_up()
-    time.sleep(5)
-    protocol.start_sterilize()
+    #time.sleep(5)
+    #protocol.start_sterilize()
     rospy.spin()
 
 if __name__ == "__main__":

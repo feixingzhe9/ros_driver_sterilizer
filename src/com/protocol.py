@@ -146,7 +146,7 @@ def start_sterilize():
 
         _is_sterilezing = True
 
-        time.sleep(290) # 5 minite
+        time.sleep(290) # about 5 minite
         while 1:
             if not parse_uart.ack_queue.empty():
                 ack = parse_uart.ack_queue.get()

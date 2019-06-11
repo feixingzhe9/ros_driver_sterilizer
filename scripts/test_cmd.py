@@ -5,7 +5,6 @@ import sys
 import rospy
 import time
 import json
-from std_msgs.msg import UInt8MultiArray
 from std_msgs.msg import String
 
 
